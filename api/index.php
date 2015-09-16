@@ -28,11 +28,11 @@ $app->post('/items', function() use ($app) {
 	}
 	
 });
-$app->put('/items/:id', function($id) use ($app) {
+$app->put('/items', function() use ($app) {
 	$db =getDB();
 	$json = $app->request->getBody();
 	$data = json_decode($json, true);
-	$sql = "update items set `name` = '".$data['name']."',`count` ='".$data['count']."' where id ='".$id."'";
+	$sql = "update items set `name` = '".$data['name']."',`count` ='".$data['count']."' where id ='".$data['id']."'";
 	$result = $db->query($sql); 
 	if($result){
 		$app->response->setStatus(200);
